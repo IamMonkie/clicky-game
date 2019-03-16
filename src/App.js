@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import NavTabs from "./components/NavTabs";
-import Wrapper from "./components/wrapper";
-import BirdCard from "./components/BirdCard";
+import Wrapper from "./components/wrapper/wrapper";
+import BirdCard from "./components/BirdCard/birdCard";
 import birds from "./birds.json";
-import Title from "./components/Title";
+import Title from "./components/Title/index";
 
 class App extends Component {
   // Setting this.state.birds to the birds json array
