@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./components/pages/Home";
-import NavTabs from "./components/NavTabs";
 import Wrapper from "./components/wrapper/wrapper";
 import BirdCard from "./components/BirdCard/birdCard";
 import birds from "./birds.json";
@@ -13,9 +11,29 @@ class App extends Component {
     birds
   };
 
-  removeBird = id => {
+  selected = {};
+  currentScore = 0;
+  topScore = 0;
+
+  selectBird = id => {
     // Filter this.state.bird for bird with an id not equal to the id being removed
-    const birds = this.state.birds.filter(bird => bird.id !== id);
+    const birds = this.state.birds.find(bird => bird.id === id);
+    if (!this.selected[id]) {
+      console.log("not selected");
+      this.selected[id] = true;
+      this.currentScore++;
+
+      //check for top score
+      if (this.currentScore > this.topScore) {
+        this.topScore = this.currentScore;
+      }
+      console.log("Score: " + this.topScore + this.selected[id]);
+    } else if (this.selected[id] === true) {
+      this.selected = {};
+      this.currentScore = 0;
+      console.log("Score: " + this.currentScore);
+    }
+
     // Set this.state.birds equal to the new birds array
     this.setState({ birds });
   };
@@ -24,16 +42,42 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Select a bird</Title>
+        {/* <div>
+          <nav className="navbar">
+            <ul>
+              <li className="title">Clicky Game</li>
+
+              <li className="score">
+                Score: {this.currentScore} | Top Score: {this.topScore}
+              </li>
+            </ul>
+          </nav>
+        </div> */}
+        <Title>
+          Welcome to Birdbrain
+          <span>
+            <h3>
+              <p id="subtitle">Select each bird only once</p>
+            </h3>
+          </span>
+          <span>
+            <h3>
+              <p id="score">
+                Score: {this.currentScore} | Top Score: {this.topScore}
+              </p>
+            </h3>
+            <p>
+              <hr />
+            </p>
+          </span>
+        </Title>
+
         {this.state.birds.map(bird => (
           <BirdCard
-            removeBird={this.removeBird}
+            selectBird={this.selectBird}
             id={bird.id}
             key={bird.id}
-            name={bird.name}
             image={bird.image}
-            occupation={bird.occupation}
-            location={bird.location}
           />
         ))}
       </Wrapper>
