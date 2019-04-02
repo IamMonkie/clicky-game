@@ -1,62 +1,47 @@
 [
   {
     "id": 1,
-    "image": "//i.imgur.com/5oyzyMe.png"
+    "name": "bird001",
+    "image": "//i.imgur.com/hgpz4tQ.png"
   },
   {
     "id": 2,
-    "name": "Mr. Krabs",
-    "image": "//i.imgur.com/PHva3c6.png",
-    "occupation": "Restaurant Owner",
-    "location": "A Giant Anchor"
+    "name": "bird002",
+    "image": "//i.imgur.com/PHva3c6.png"
   },
   {
     "id": 3,
-    "name": "Squidward",
-    "image": "//i.imgur.com/dKlT44g.png",
-    "occupation": "Cashier",
-    "location": "An Easter Island Head"
+    "name": "bird003",
+    "image": "//i.imgur.com/jYgjFNm.png"
   },
   {
     "id": 4,
-    "name": "Dexter",
-    "image": "//i.imgur.com/rjLWztQ.png",
-    "occupation": "Boy Genius",
-    "location": "A Secret Laboratory"
+    "name": "bird004",
+    "image": "//i.imgur.com/rjLWztQ.png"
   },
   {
     "id": 5,
-    "name": "Courage",
-    "image": "//i.imgur.com/aaypB2b.png",
-    "occupation": "A Cowardly Dog",
-    "location": "Nowhere, Kansas"
+    "name": "bird005",
+    "image": "//i.imgur.com/aaypB2b.png"
   },
   {
     "id": 6,
-    "name": "Doug Funnie",
-    "image": "//i.imgur.com/fBg5QDs.png",
-    "occupation": "Student",
-    "location": "Bluffington"
+    "name": "bird006",
+    "image": "//i.imgur.com/fBg5QDs.png"
   },
   {
     "id": 7,
-    "name": "Bugs Bunny",
-    "image": "//i.imgur.com/AXbZALt.png",
-    "occupation": "Looney Toon",
-    "location": "A Rabbit Burrow"
+    "name": "bird007",
+    "image": "//i.imgur.com/AXbZALt.png"
   },
   {
     "id": 8,
-    "name": "Johnny Bravo",
-    "image": "//i.imgur.com/FIhr8FI.png",
-    "occupation": "Ladies Man",
-    "location": "Aron City"
+    "name": "bird008",
+    "image": "//i.imgur.com/FIhr8FI.png"
   },
   {
     "id": 9,
-    "name": "Tommy Pickles",
-    "image": "//i.imgur.com/yyzYHye.png",
-    "occupation": "Adventurer",
-    "location": "California"
+    "name": "bird009",
+    "image": "//i.imgur.com/yyzYHye.png"
   }
 ]

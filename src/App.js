@@ -8,10 +8,13 @@ import Title from "./components/Title/index";
 class App extends Component {
   // Setting this.state.birds to the birds json array
   state = {
-    birds
+    birds,
+    currentScore: 0,
+    topScore: 0,
+    wins: 0
   };
 
-  selected = {};
+  selected = [];
   currentScore = 0;
   topScore = 0;
 
