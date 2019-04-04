@@ -13,8 +13,10 @@ class App extends Component {
     birds,
     message: "",
     currentScore: 0,
-    topScore: 0,
-    wins: 0
+    topScore: /*localStorage.getItem("hiScore")
+      ? localStorage.getItem("hiScore")
+      :*/ 0,
+    win: 0
   };
 
   selected = [];
@@ -33,6 +35,7 @@ class App extends Component {
       this.setState({ message: "You Lose", win: 1 });
     } else {
       this.selected.push(id);
+      this.shuffle(birds);
 
       // increment score
       let increase = this.state.topScore;
@@ -55,6 +58,16 @@ class App extends Component {
   restart = () => {
     this.selected = [];
     this.setState({ win: 0, currentScore: 0 });
+    console.log("restarting");
+  };
+
+  // shuffle birds
+  shuffle = array => {
+    let i = array.length - 1;
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   };
 
   render() {
@@ -74,7 +87,7 @@ class App extends Component {
               {this.state.win ? (
                 <div>
                   {this.state.message}{" "}
-                  <button> onClick={this.restart}>Play Again</button>
+                  <button onCLick={this.restart}>Play Again</button>
                 </div>
               ) : (
                 <div />
