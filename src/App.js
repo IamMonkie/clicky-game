@@ -20,43 +20,43 @@ class App extends Component {
   selected = [];
   currentScore = 0;
   topScore = 0;
-  clicked = [];
 
   selectBird = id => {
     // Filter this.state.bird for bird with an id not equal to the id being removed
-    const birds = this.state.birds.find(bird => bird.id === id);
+    // const birds = this.state.birds.find(bird => bird.id === id);
 
     console.log("clicked the bird: id= " + id);
 
+    // check if bird has been clicked
     if (this.selected.includes(id)) {
       // this.selected[id] = true;
-      this.clicked.push(id);
+      this.setState({ message: "You Lose", win: 1 });
+    } else {
+      this.selected.push(id);
 
-      let increase = this.state.currentScore;
+      // increment score
+      let increase = this.state.topScore;
       increase += 1;
+
+      // update score
       if (increase > this.state.topScore) {
         this.setState({
           topScore: increase,
           currentScore: increase
         });
+      } else {
+        this.setState({ currentScore: increase });
       }
-
-      //check for top score
-      if (this.currentScore > this.topScore) {
-        this.topScore = this.currentScore;
-      }
-      console.log("Score: " + this.topScore + this.selected[id]);
-    } else if (this.selected[id] === true) {
-      this.selected = {};
-      this.currentScore = 0;
-      console.log("Score: " + this.currentScore);
     }
-
-    // Set this.state.birds equal to the new birds array
-    this.setState({ birds });
+    console.log("selected: [ " + this.selected + " ]");
   };
 
-  // Map over this.state.birds and render a BirdCard component for each bird object
+  // restart
+  restart = () => {
+    this.selected = [];
+    this.setState({ win: 0, currentScore: 0 });
+  };
+
   render() {
     return (
       <Wrapper>
@@ -68,8 +68,17 @@ class App extends Component {
           <span>
             <h3>
               <p id="score">
-                Score: {this.currentScore} | Top Score: {this.topScore}
+                Score: {this.state.currentScore} | Top Score:{" "}
+                {this.state.topScore}
               </p>
+              {this.state.win ? (
+                <div>
+                  {this.state.message}{" "}
+                  <button> onClick={this.restart}>Play Again</button>
+                </div>
+              ) : (
+                <div />
+              )}
             </h3>
 
             {/* <hr /> */}
