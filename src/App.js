@@ -6,9 +6,12 @@ import birds from "./birds.json";
 import Title from "./components/Title/index";
 
 class App extends Component {
+  // if win =1, restart button is displayed, else it is hidden
+
   // Setting this.state.birds to the birds json array
   state = {
     birds,
+    message: "",
     currentScore: 0,
     topScore: 0,
     wins: 0
@@ -17,14 +20,26 @@ class App extends Component {
   selected = [];
   currentScore = 0;
   topScore = 0;
+  clicked = [];
 
   selectBird = id => {
     // Filter this.state.bird for bird with an id not equal to the id being removed
     const birds = this.state.birds.find(bird => bird.id === id);
-    if (!this.selected[id]) {
-      console.log("not selected");
-      this.selected[id] = true;
-      this.currentScore++;
+
+    console.log("clicked the bird: id= " + id);
+
+    if (this.selected.includes(id)) {
+      // this.selected[id] = true;
+      this.clicked.push(id);
+
+      let increase = this.state.currentScore;
+      increase += 1;
+      if (increase > this.state.topScore) {
+        this.setState({
+          topScore: increase,
+          currentScore: increase
+        });
+      }
 
       //check for top score
       if (this.currentScore > this.topScore) {
@@ -45,23 +60,10 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        {/* <div>
-          <nav className="navbar">
-            <ul>
-              <li className="title">Clicky Game</li>
-
-              <li className="score">
-                Score: {this.currentScore} | Top Score: {this.topScore}
-              </li>
-            </ul>
-          </nav>
-        </div> */}
         <Title>
           Welcome to Birdbrain
           <span>
-            <h3>
-              <p id="subtitle">Select each bird only once</p>
-            </h3>
+            <h3 id="subtitle">Select each bird only once</h3>
           </span>
           <span>
             <h3>
@@ -69,9 +71,8 @@ class App extends Component {
                 Score: {this.currentScore} | Top Score: {this.topScore}
               </p>
             </h3>
-            <p>
-              <hr />
-            </p>
+
+            {/* <hr /> */}
           </span>
         </Title>
 

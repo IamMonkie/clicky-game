@@ -7,15 +7,16 @@ class birdBrainContainer extends Component {
     currentPage: "Home"
   };
 
-  handlePageChange = page => {
-    this.setState({ currentPage: page });
-  };
+  // uncomment if addition pages are added
+  // handlePageChange = page => {
+  //   this.setState({ currentPage: page });
+  // };
 
-  handleRender = () => {
-    if (this.state.currentPage === "Home") {
-      return <Home />;
-    }
-  };
+  // handleRender = () => {
+  //   if (this.state.currentPage === "Home") {
+  //     return <Home />;
+  //   }
+  // };
 
   render() {
     return (
