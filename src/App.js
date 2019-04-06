@@ -6,8 +6,7 @@ import birds from "./birds.json";
 import Title from "./components/Title/index";
 
 class App extends Component {
-  // if win =1, restart button is displayed, else it is hidden
-
+  // if gameEnd =1, restart button is displayed, else it is hidden
   // Setting this.state.birds to the birds json array
   state = {
     birds,
@@ -16,7 +15,7 @@ class App extends Component {
     topScore: /*localStorage.getItem("hiScore")
       ? localStorage.getItem("hiScore")
       :*/ 0,
-    win: 0
+    gameEnd: 0
   };
 
   selected = [];
@@ -32,7 +31,7 @@ class App extends Component {
     // check if bird has been clicked
     if (this.selected.includes(id)) {
       // this.selected[id] = true;
-      this.setState({ message: "You Lose", win: 1 });
+      this.setState({ message: "You Lose", gameEnd: 1 });
     } else {
       this.selected.push(id);
       this.shuffle(birds);
@@ -57,7 +56,7 @@ class App extends Component {
   // restart
   restart = () => {
     this.selected = [];
-    this.setState({ win: 0, currentScore: 0 });
+    this.setState({ gameEnd: 0, currentScore: 0 });
     console.log("restarting");
   };
 
@@ -84,10 +83,10 @@ class App extends Component {
                 Score: {this.state.currentScore} | Top Score:{" "}
                 {this.state.topScore}
               </p>
-              {this.state.win ? (
+              {this.state.gameEnd ? (
                 <div>
-                  {this.state.message}{" "}
-                  <button onCLick={this.restart}>Play Again</button>
+                  {this.state.message}
+                  <button onClick={this.restart}>Play Again</button>
                 </div>
               ) : (
                 <div />
