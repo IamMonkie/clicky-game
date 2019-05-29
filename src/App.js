@@ -6,6 +6,7 @@ import birds from "./birds.json";
 import Title from "./components/Title/index";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+// import BG from "./images/treeBackground.jpg";
 
 const styles = theme => ({
   root: {
@@ -24,6 +25,7 @@ const styles = theme => ({
   centeringImgs: {
     "justify-content": "center"
   }
+  // backgroundImage: `url(${BG})`
 });
 
 class App extends Component {

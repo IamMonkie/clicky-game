@@ -1,5 +1,6 @@
 .wrapper {
   padding-top: 50px;
+  background-image: url("../images/treeBackground.png");
   background: #eceff1;
   min-height: 100vh;
   display: flex;
