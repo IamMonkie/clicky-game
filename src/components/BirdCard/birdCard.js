@@ -1,15 +1,27 @@
 import React from "react";
 import "./style.css";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 
 function BirdCard(props) {
   return (
-    <div
-      onClick={() => props.selectBird(props.id)}
-      id={props.id}
-      className="card"
-    >
-      <img alt={props.name} src={props.image} />
-    </div>
+    <Card className="card-container">
+      <CardActionArea className="card-container">
+        <CardMedia className="card-container">
+          <div
+            onClick={() => props.selectBird(props.id)}
+            id={props.id}
+            className="card"
+          >
+            <div className="img-container">
+              <img alt={props.name} src={props.image} />
+            </div>
+            <div />
+          </div>
+        </CardMedia>
+      </CardActionArea>
+    </Card>
   );
 }
 

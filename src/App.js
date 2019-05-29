@@ -4,6 +4,27 @@ import Wrapper from "./components/wrapper/wrapper";
 import BirdCard from "./components/BirdCard/birdCard";
 import birds from "./birds.json";
 import Title from "./components/Title/index";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing.unit,
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  },
+  centering: {
+    display: "flex",
+    "justify-content": "center",
+    "margin-top": "25px"
+  },
+  centeringImgs: {
+    "justify-content": "center"
+  }
+});
 
 class App extends Component {
   // if gameEnd =1, restart button is displayed, else it is hidden
@@ -23,7 +44,7 @@ class App extends Component {
   topScore = 0;
 
   selectBird = id => {
-    // Filter this.state.bird for bird with an id not equal to the id being removed
+    // Filter this.state.bird for bird with an id not equal to the id being selected
     // const birds = this.state.birds.find(bird => bird.id === id);
 
     console.log("clicked the bird: id= " + id);
@@ -37,7 +58,7 @@ class App extends Component {
       this.shuffle(birds);
 
       // increment score
-      let increase = this.state.topScore;
+      let increase = this.state.currentScore;
       increase += 1;
 
       // update score
@@ -56,17 +77,21 @@ class App extends Component {
   // restart
   restart = () => {
     this.selected = [];
-    this.setState({ gameEnd: 0, currentScore: 0 });
+
+    this.setState({ increase: 0, gameEnd: 0, currentScore: 0 });
     console.log("restarting");
   };
 
   // shuffle birds
   shuffle = array => {
     let i = array.length - 1;
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
   };
 
   render() {
@@ -96,18 +121,35 @@ class App extends Component {
             {/* <hr /> */}
           </span>
         </Title>
-
-        {this.state.birds.map(bird => (
-          <BirdCard
-            selectBird={this.selectBird}
-            id={bird.id}
-            key={bird.id}
-            image={bird.image}
-          />
-        ))}
+        <div className={this.props.classes.centering}>
+          <Grid
+            container
+            item
+            xs={12}
+            spacing={24}
+            className={this.props.classes.centeringImgs}
+          >
+            <Grid container item xs={12} spacing={24}>
+              {this.state.birds.map(bird => {
+                return (
+                  <>
+                    <Grid item xs={4}>
+                      <BirdCard
+                        selectBird={this.selectBird}
+                        id={bird.id}
+                        key={bird.id}
+                        image={bird.image}
+                      />
+                    </Grid>
+                  </>
+                );
+              })}
+            </Grid>
+          </Grid>
+        </div>
       </Wrapper>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
