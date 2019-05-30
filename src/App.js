@@ -6,6 +6,7 @@ import birds from "./birds.json";
 import Title from "./components/Title/index";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import "./App.css";
 
 const styles = theme => ({
   root: {
@@ -25,15 +26,6 @@ const styles = theme => ({
     "justify-content": "center"
   }
 });
-
-const bodyStyle = {
-  background: "#eceff1",
-  minHeight: "100vh",
-  minWidth: "100vw",
-  padding: "1rem 1rem",
-  backgroundImage: "url(" + "https://i.imgur.com/yggaZ5s.png" + ")",
-  backgroundPosition: "top"
-};
 
 class App extends Component {
   // if gameEnd =1, restart button is displayed, else it is hidden
@@ -62,7 +54,12 @@ class App extends Component {
     if (this.selected.includes(id)) {
       // this.selected[id] = true;
       this.setState({ message: "You Lose", gameEnd: 1 });
-    } else {
+    }
+
+    // check for win
+
+    // record selected and shuffle cards
+    else {
       this.selected.push(id);
       this.shuffle(birds);
 
@@ -71,11 +68,14 @@ class App extends Component {
       increase += 1;
 
       // update score
-      if (increase > this.state.topScore) {
+      if (increase > this.state.topScore && this.state.gameEnd === 0) {
         this.setState({
           topScore: increase,
           currentScore: increase
         });
+      }
+      if (this.state.currentScore === 8) {
+        this.setState({ message: "You Win!", gameEnd: 1, topScore: 0 });
       } else {
         this.setState({ currentScore: increase });
       }
@@ -132,33 +132,25 @@ class App extends Component {
             </span>
           </Title>
         </div>
-        <div className="bodyContainer" style={bodyStyle}>
-          <div className={this.props.classes.centering}>
-            <Grid
-              container
-              item
-              xs={20}
-              spacing={24}
-              className={this.props.classes.centeringImgs}
-            >
-              <Grid container item xs={20} spacing={24}>
-                {this.state.birds.map(bird => {
-                  return (
-                    <>
-                      <Grid item xs={4}>
-                        <BirdCard
-                          selectBird={this.selectBird}
-                          id={bird.id}
-                          key={bird.id}
-                          image={bird.image}
-                        />
-                      </Grid>
-                    </>
-                  );
-                })}
-              </Grid>
+        <div className="bodyContainer">
+          <Grid container item xs={20} spacing={24}>
+            <Grid container item xs={20} spacing={24}>
+              {this.state.birds.map(bird => {
+                return (
+                  <>
+                    <Grid item xs={4}>
+                      <BirdCard
+                        selectBird={this.selectBird}
+                        id={bird.id}
+                        key={bird.id}
+                        image={bird.image}
+                      />
+                    </Grid>
+                  </>
+                );
+              })}
             </Grid>
-          </div>
+          </Grid>
         </div>
       </Wrapper>
     );
