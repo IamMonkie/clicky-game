@@ -4,9 +4,13 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 
+const borderStyle = {
+  borderRadius: ".75rem"
+};
+
 function BirdCard(props) {
   return (
-    <Card className="card-container">
+    <Card className="card-container" style={borderStyle}>
       <CardActionArea className="card-container">
         <CardMedia className="card-container">
           <div

@@ -6,7 +6,6 @@ import birds from "./birds.json";
 import Title from "./components/Title/index";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-// import BG from "./images/treeBackground.jpg";
 
 const styles = theme => ({
   root: {
@@ -25,8 +24,16 @@ const styles = theme => ({
   centeringImgs: {
     "justify-content": "center"
   }
-  // backgroundImage: `url(${BG})`
 });
+
+const bodyStyle = {
+  background: "#eceff1",
+  minHeight: "100vh",
+  minWidth: "100vw",
+  padding: "1rem 3rem",
+  backgroundImage: "url(" + "https://i.imgur.com/yggaZ5s.png" + ")",
+  backgroundPosition: "top"
+};
 
 class App extends Component {
   // if gameEnd =1, restart button is displayed, else it is hidden
@@ -99,55 +106,59 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>
-          Welcome to Birdbrain
-          <span>
-            <h3 id="subtitle">Select each bird only once</h3>
-          </span>
-          <span>
-            <h3>
-              <p id="score">
-                Score: {this.state.currentScore} | Top Score:{" "}
-                {this.state.topScore}
-              </p>
-              {this.state.gameEnd ? (
-                <div>
-                  {this.state.message}
-                  <button onClick={this.restart}>Play Again</button>
-                </div>
-              ) : (
-                <div />
-              )}
-            </h3>
+        <div className="headerContainer">
+          <Title>
+            Welcome to Birdbrain
+            <span>
+              <h3 id="subtitle">Select each bird only once</h3>
+            </span>
+            <span>
+              <h3>
+                <p id="score">
+                  Score: {this.state.currentScore} | Top Score:{" "}
+                  {this.state.topScore}
+                </p>
+                {this.state.gameEnd ? (
+                  <div>
+                    {this.state.message}
+                    <button onClick={this.restart}>Play Again</button>
+                  </div>
+                ) : (
+                  <div />
+                )}
+              </h3>
 
-            {/* <hr /> */}
-          </span>
-        </Title>
-        <div className={this.props.classes.centering}>
-          <Grid
-            container
-            item
-            xs={12}
-            spacing={24}
-            className={this.props.classes.centeringImgs}
-          >
-            <Grid container item xs={12} spacing={24}>
-              {this.state.birds.map(bird => {
-                return (
-                  <>
-                    <Grid item xs={4}>
-                      <BirdCard
-                        selectBird={this.selectBird}
-                        id={bird.id}
-                        key={bird.id}
-                        image={bird.image}
-                      />
-                    </Grid>
-                  </>
-                );
-              })}
+              {/* <hr /> */}
+            </span>
+          </Title>
+        </div>
+        <div className="bodyContainer" style={bodyStyle}>
+          <div className={this.props.classes.centering}>
+            <Grid
+              container
+              item
+              xs={20}
+              spacing={24}
+              className={this.props.classes.centeringImgs}
+            >
+              <Grid container item xs={20} spacing={24}>
+                {this.state.birds.map(bird => {
+                  return (
+                    <>
+                      <Grid item xs={4}>
+                        <BirdCard
+                          selectBird={this.selectBird}
+                          id={bird.id}
+                          key={bird.id}
+                          image={bird.image}
+                        />
+                      </Grid>
+                    </>
+                  );
+                })}
+              </Grid>
             </Grid>
-          </Grid>
+          </div>
         </div>
       </Wrapper>
     );
