@@ -30,7 +30,7 @@ const bodyStyle = {
   background: "#eceff1",
   minHeight: "100vh",
   minWidth: "100vw",
-  padding: "1rem 3rem",
+  padding: "1rem 1rem",
   backgroundImage: "url(" + "https://i.imgur.com/yggaZ5s.png" + ")",
   backgroundPosition: "top"
 };
