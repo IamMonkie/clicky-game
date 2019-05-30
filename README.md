@@ -1,4 +1,4 @@
-## https://nervous-stonebraker-f9585e.netlify.com/
+## https://bird-brain.netlify.com/
 
 # clicky-game
 
