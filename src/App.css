@@ -13,6 +13,10 @@
   color: white;
 } */
 
+body {
+  font-family: "Nova Mono", monospace;
+}
+
 .headerContainer {
   background: #eceff1;
   min-width: 100vw;
