@@ -110,7 +110,7 @@ class App extends Component {
           <Title>
             Welcome to Birdbrain
             <span>
-              <h3 id="subtitle">Select each bird only once</h3>
+              <div id="subtitle">Select each bird only once</div>
             </span>
             <span>
               <h3>
